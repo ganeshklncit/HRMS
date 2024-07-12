@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace HRMS.Web.Data
 {
@@ -8,7 +9,9 @@ namespace HRMS.Web.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
+            
         }
+
+        public DbSet<LeaveType> LeaveTypes { get; set; }    
     }
 }
