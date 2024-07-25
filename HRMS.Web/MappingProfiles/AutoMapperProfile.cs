@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using HRMS.Web.Data;
+using HRMS.Web.Models.LeaveAllocations;
 using HRMS.Web.Models.LeaveTypes;
+using HRMS.Web.Models.Periods;
 using Microsoft.CodeAnalysis.Options;
 
 namespace HRMS.Web.MappingProfiles
@@ -17,7 +19,15 @@ namespace HRMS.Web.MappingProfiles
 
             CreateMap<LeaveType, LeaveTypeEditVM>()
                .ForMember(dest => dest.Days, opt => opt.MapFrom(src => src.NumberOfDays))
-               .ReverseMap(); 
+               .ReverseMap();
+
+            CreateMap<LeaveAllocation, LeaveAllocationVM>();
+
+            CreateMap<Period, PeriodVM>();
+
+            CreateMap<ApplicationUser, EmployeeListVM>();
+
+            CreateMap<LeaveAllocation, LeaveAllocationEditVM>();
         }
     }
 }

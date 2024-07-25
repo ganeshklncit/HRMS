@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using HRMS.Web.Data;
 using HRMS.Web.Models.LeaveTypes;
 using AutoMapper;
-using HRMS.Web.Services;
+using HRMS.Web.Common;
+using HRMS.Web.Services.LeaveTypes;
 
 namespace HRMS.Web.Controllers
 {
+    [Authorize(Roles =Roles.Administrator)]
     public class LeaveTypesController(ILeaveTypesService _leaveTypesService) : Controller
     {
        

@@ -3,11 +3,11 @@ using HRMS.Web.Data;
 using HRMS.Web.Models.LeaveTypes;
 using Microsoft.EntityFrameworkCore;
 
-namespace HRMS.Web.Services;
+namespace HRMS.Web.Services.LeaveTypes;
 
 public class LeaveTypesService(ApplicationDbContext _context, IMapper _mapper) : ILeaveTypesService
 {
-   
+
     public async Task<List<LeaveTypeReadOnlyVM>> GetAll()
     {
         var data = await _context.LeaveTypes.ToListAsync();
@@ -62,5 +62,10 @@ public class LeaveTypesService(ApplicationDbContext _context, IMapper _mapper) :
     {
         var lowercaseName = name.ToLower();
         return await _context.LeaveTypes.AnyAsync(q => q.Name.ToLower().Equals(lowercaseName));
+    }
+    public async Task<bool> DaysExceedMaximum(int leaveTypeId, int days)
+    {
+        var leaveType = await _context.LeaveTypes.FindAsync(leaveTypeId);
+        return leaveType.NumberOfDays < days;
     }
 }

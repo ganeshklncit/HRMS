@@ -1,6 +1,6 @@
 ﻿using HRMS.Web.Models.LeaveTypes;
 
-namespace HRMS.Web.Services
+namespace HRMS.Web.Services.LeaveTypes
 {
     public interface ILeaveTypesService
     {
@@ -12,5 +12,7 @@ namespace HRMS.Web.Services
         Task<List<LeaveTypeReadOnlyVM>> GetAll();
         bool LeaveTypeExists(int id);
         Task Remove(int id);
+
+        Task<bool> DaysExceedMaximum(int leaveTypeId, int days);
     }
 }
