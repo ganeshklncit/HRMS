@@ -4,7 +4,7 @@ namespace HRMS.Web.Services.LeaveAllocations
 {
     public interface IleaveAllocationsService
     {
-       Task AllocateLeave(string employeeId);
+       Task AllocateLeave(string employeeId); 
 
         Task<List<LeaveAllocation>> GetAllocations(string? userId);
 
@@ -14,5 +14,7 @@ namespace HRMS.Web.Services.LeaveAllocations
         Task<List<EmployeeListVM>> GetEmployees();
 
         Task EditAllocation(LeaveAllocationEditVM allocationEditVm);
+        Task<LeaveAllocation> GetCurrentAllocation(int leaveTypeId, string employeeId);
+
     }
 }

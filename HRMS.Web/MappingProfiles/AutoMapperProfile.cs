@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using HRMS.Web.Data;
 using HRMS.Web.Models.LeaveAllocations;
+using HRMS.Web.Models.LeaveRequests;
 using HRMS.Web.Models.LeaveTypes;
 using HRMS.Web.Models.Periods;
 using Microsoft.CodeAnalysis.Options;
@@ -28,6 +29,10 @@ namespace HRMS.Web.MappingProfiles
             CreateMap<ApplicationUser, EmployeeListVM>();
 
             CreateMap<LeaveAllocation, LeaveAllocationEditVM>();
+
+            CreateMap<LeaveRequestCreateVM, LeaveRequest>();
+
+
         }
     }
 }

@@ -1,6 +1,9 @@
 using HRMS.Web.Data;
 using HRMS.Web.Services.LeaveAllocations;
+using HRMS.Web.Services.LeaveRequests;
 using HRMS.Web.Services.LeaveTypes;
+using HRMS.Web.Services.Periods;
+using HRMS.Web.Services.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -15,7 +18,15 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<ILeaveTypesService, LeaveTypesService>();
 builder.Services.AddScoped<IleaveAllocationsService, LeaveAllocationService>();
+builder.Services.AddScoped<ILeaveRequestsService, LeaveRequestsService>();
+builder.Services.AddScoped<IPeriodsService, PeriodsService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("AdminSupervisorOnly", policy => {
+        policy.RequireRole(Roles.Administrator, Roles.Supervisor);
+    });
+});
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
